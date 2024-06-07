@@ -5,7 +5,7 @@ import axios, { AxiosResponse } from "axios";
 export const UserService = {
   RegisterUser: async (user: User) => {
     try {
-      const API_URL = `${baseUrlApi.baseUrlApi}/User`;
+      const API_URL = `${baseUrlApi.baseUrlApi}/register`;
       const token = localStorage.getItem("token");
       const httpHeaders = {
         "Content-Type": "application/json",
@@ -24,14 +24,14 @@ export const UserService = {
   },
   Login: async (email: string, password: string) => {
     try {
-      const API_URL = `${baseUrlApi.baseUrlApi}/User/SignIn`;
+      const API_URL = `${baseUrlApi.baseUrlApi}/login`;
       const httpHeaders = {
         "Content-Type": "application/json",
       };
       const response: AxiosResponse = await axios.post(
         API_URL,
         {
-          phone: email,
+          email: email,
           password: password,
         },
         {

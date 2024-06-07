@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
-import ResponsiveProvider from "@contexts/ResponsiveProvider.vue";
+import { UserService } from '@services/User/userService.ts'
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
 
@@ -8,11 +10,49 @@ const name = ref("");
 const email = ref("");
 const password = ref("");
 
-const handleSubmit = () => {
-  console.log("Name:", name.value);
-  console.log("Email:", email.value);
-  console.log("Password:", password.value);
-};
+const handleRegiser = async () => {
+  if(name.value == "" || email.value == "" || password.value == "") {
+    toast.warn("Preencha todos os campos", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+    return;
+  }
+
+  const registerBody: any = {
+    name: name.value,
+    email: email.value,
+    password: password.value,
+  };
+
+  try {
+    console.log("Name:", name.value);
+    console.log("Email:", email.value);
+    console.log("Password:", password.value);
+
+    await UserService.RegisterUser(registerBody)
+
+    toast.success("Conta criada com sucesso!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+
+  } catch(error){
+    toast.error("Ocorreu um erro ao criar uma conta.", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+  }
+}
 </script>
 
 <template>
@@ -57,10 +97,10 @@ const handleSubmit = () => {
             />
           </div>
           <button
-            @click="handleSubmit"
+            @click="handleRegiser"
             class="w-[100%] bg-yellow800 p-[6px] rounded-md text-white font-semibold h-[2.5rem] mt-[1.5rem] hover:border-2 hover:border-yellow800 hover:bg-white hover:text-yellow800"
           >
-            Entrar
+            Criar conta
           </button>
           <router-link to="/login" class="text-yellow800 text-[1rem] mt-[0.5rem] hover:underline">
             Já possuo conta
@@ -108,10 +148,10 @@ const handleSubmit = () => {
             />
           </div>
           <button
-            @click="handleSubmit"
+            @click="handleRegiser"
             class="w-[100%] bg-yellow800 p-[6px] rounded-md text-white font-semibold h-[2.5rem] mt-[1.5rem] hover:border-2 hover:border-yellow800 hover:bg-white hover:text-yellow800"
           >
-            Entrar
+            Criar conta
           </button>
           <router-link to="/login" class="text-yellow800 text-[1rem] mt-[0.5rem] hover:underline">
             Já possuo conta

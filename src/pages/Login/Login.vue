@@ -25,7 +25,7 @@ const handleSubmit = () => {
         <div class="w-[80%] flex flex-col justify-center items-center">
           <img src="../../assets/logo_card.svg" />
           <h2 class="text-center text-blue080 text-[2.5rem] font-bold">
-            Cards marketplace
+            Login
           </h2>
           <div class="w-full flex flex-col mt-[1.5rem]">
             <label class="text-darkGrey text-[1rem]">E-mail</label>
@@ -51,6 +51,9 @@ const handleSubmit = () => {
           >
             Entrar
           </button>
+          <router-link to="/register" class="text-yellow800 text-[1rem] mt-[0.5rem] hover:underline">
+            Não possuo conta
+          </router-link>
         </div>
       </div>
     </div>
@@ -64,7 +67,7 @@ const handleSubmit = () => {
         <div class="w-[80%] flex flex-col justify-center items-center">
           <img src="../../assets/logo_card.svg" />
           <h2 class="text-center text-blue080 text-[2.5rem] font-bold">
-            Cards marketplace
+            Login
           </h2>
           <div class="w-full flex flex-col mt-[1.5rem]">
             <label class="text-darkGrey text-[1rem]">E-mail</label>
@@ -90,6 +93,9 @@ const handleSubmit = () => {
           >
             Entrar
           </button>
+          <router-link to="/register" class="text-yellow800 text-[1rem] mt-[0.5rem] hover:underline">
+            Não possuo conta
+          </router-link>
         </div>
       </div>
     </div>

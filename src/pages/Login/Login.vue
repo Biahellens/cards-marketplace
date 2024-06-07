@@ -1,16 +1,56 @@
 <script setup lang="ts">
+import { useUserContext } from "@contexts/userContext/UserContext.vue";
+import { User } from "@models/User";
 import { ref, inject } from "vue";
-import ResponsiveProvider from "@contexts/ResponsiveProvider.vue";
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
+const { handleLogin } = useUserContext();
 
 const email = ref("");
 const password = ref("");
 
-const handleSubmit = () => {
-  console.log("Email:", email.value);
-  console.log("Password:", password.value);
-};
+const login = async () => {
+  if(email.value == "" || password.value == "") {
+    toast.warn("Preencha todos os campos", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+  }
+
+  try {
+    console.log("Email:", email.value);
+    console.log("Password:", password.value);
+
+    const user: User | undefined | null = await handleLogin(
+      email.value,
+      password.value
+    );
+
+    if(user) {
+      console.log(user)
+      toast.success("Login realizado com sucesso", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+    }
+  } catch(error){
+    toast.error("Email ou senha incorreto!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+  }
+}
 </script>
 
 <template>
@@ -46,7 +86,7 @@ const handleSubmit = () => {
             />
           </div>
           <button
-            @click="handleSubmit"
+            @click="login"
             class="w-[100%] bg-yellow800 p-[6px] rounded-md text-white font-semibold h-[2.5rem] mt-[1.5rem] hover:border-2 hover:border-yellow800 hover:bg-white hover:text-yellow800"
           >
             Entrar
@@ -88,7 +128,7 @@ const handleSubmit = () => {
             />
           </div>
           <button
-            @click="handleSubmit"
+            @click="login"
             class="w-[100%] bg-yellow800 p-[6px] rounded-md text-white font-semibold h-[2.5rem] mt-[1.5rem] hover:border-2 hover:border-yellow800 hover:bg-white hover:text-yellow800"
           >
             Entrar

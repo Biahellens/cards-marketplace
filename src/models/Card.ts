@@ -7,5 +7,18 @@ export interface ModelCard {
 }
 
 export interface BuyCards {
-  cardIds: string[]
+  cardIds: string[];
+}
+
+export interface SwapCard {
+  cards: [
+    {
+      cardId: string;
+      type: string;
+    },
+    {
+      cardId: string;
+      type: string;
+    }
+  ];
 }

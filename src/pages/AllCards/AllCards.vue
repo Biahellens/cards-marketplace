@@ -14,7 +14,7 @@
     <div class="w-[100vw] h-full flex flex-row">
       <Menu v-if="!isTabletOrMobile" />
       <div class="p-[3rem]">
-        <p>Home</p>
+        <p>Todas as cartas</p>
       </div>
     </div>
   </div>

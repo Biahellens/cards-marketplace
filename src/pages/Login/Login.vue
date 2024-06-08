@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useUserContext } from "@contexts/userContext/UserContext.vue";
 import { User } from "@models/User";
+import { useRouter } from 'vue-router';
 import { ref, inject } from "vue";
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
 const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
 const { handleLogin } = useUserContext();
+const router = useRouter();
 
 const email = ref("");
 const password = ref("");
@@ -40,6 +42,8 @@ const login = async () => {
         closeOnClick: true,
         pauseOnHover: true,
       });
+
+      router.push('/')
     }
   } catch(error){
     toast.error("Email ou senha incorreto!", {

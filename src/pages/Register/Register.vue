@@ -3,8 +3,10 @@ import { ref, inject } from "vue";
 import { UserService } from '@services/User/userService.ts'
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
+import { useRouter } from 'vue-router';
 
 const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
+const router = useRouter();
 
 const name = ref("");
 const email = ref("");
@@ -42,6 +44,10 @@ const handleRegiser = async () => {
       closeOnClick: true,
       pauseOnHover: true,
     });
+
+    setTimeout(() => {
+      router.push('/login')
+    }, 2000);
 
   } catch(error){
     toast.error("Ocorreu um erro ao criar uma conta.", {

@@ -3,9 +3,12 @@ import './style.css';
 import router from './route';
 
 // pages
-import Home from '@pages/Home/Home.vue';
+import MyCards from '@pages/MyCards/MyCards.vue';
 import Login from '@pages/Login/Login.vue';
 import Register from '@pages/Register/Register.vue';
+import SwapCards from '@pages/SwapCards/SwapCards.vue'
+import AllCards from '@pages/AllCards/AllCards.vue';
+import Shop from '@pages/Shop/Shop.vue'
 import App from './App.vue';
 
 import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify';
@@ -23,8 +26,11 @@ const toastOptions: ToastContainerOptions = {
 
 app.use(Vue3Toastify, toastOptions);
 
-app.component('Home', Home);
+app.component('MyCards', MyCards);
 app.component('Login', Login);
 app.component('Register', Register);
+app.component('SwapCards', SwapCards);
+app.component('AllCards', AllCards);
+app.component('Shop', Shop);
 
 app.use(router).mount('#app');

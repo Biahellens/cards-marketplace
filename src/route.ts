@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@pages/Home/Home.vue';
+import MyCards from '@pages/MyCards/MyCards.vue';
 import Login from '@pages/Login/Login.vue';
 import Register from '@pages/Register/Register.vue';
 import SwapCards from '@pages/SwapCards/SwapCards.vue'
 import AllCards from '@pages/AllCards/AllCards.vue';
+import Shop from '@pages/Shop/Shop.vue'
 
 const routes = [
   {
@@ -23,8 +24,12 @@ const routes = [
     component: AllCards
   },
   {
-    path: '/home',
-    component: Home
+    path: '/myCards',
+    component: MyCards
+  },
+  {
+    path: '/shop',
+    component: Shop
   }
 ];
 

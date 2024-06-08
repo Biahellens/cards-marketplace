@@ -9,9 +9,9 @@
 </script>
 
 <template>
-  <div class="w-[100vw] h-full">
+  <div class="w-[100%] h-full">
     <Header />
-    <div class="w-[100vw] h-full flex flex-row">
+    <div class="w-[100%] h-full flex flex-row">
       <Menu v-if="!isTabletOrMobile" />
       <div class="p-[3rem]">
         <p>Trocas ativas</p>

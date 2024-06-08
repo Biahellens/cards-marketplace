@@ -44,12 +44,19 @@
 
   const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
   const cards = ref<ModelCard[]>([]);
+  const meCards = ref<ModelCard[]>([]);
   const selectedCards = ref<string[]>([]);
 
   const getCards = async () => {
-    const result = await CardService.GetAll()
-    if(result){
-      cards.value = result.list
+    const result = await CardService.GetAll();
+    if (result) {
+      const meResult = await CardService.GetByUser();
+      if (meResult) {
+        meCards.value = meResult;
+        cards.value = result.list.filter((card: ModelCard) => !meCards.value.some(meCard => meCard.id === card.id));
+      } else {
+        cards.value = result.list;
+      }
     }
   }
 
@@ -90,6 +97,8 @@
       pauseOnHover: true,
     });
 
+    selectedCards.value = [];
+
   } catch(error){
     toast.error("Ocorreu um erro ao adicionar carta(s).", {
       position: "top-right",
@@ -99,7 +108,7 @@
       pauseOnHover: true,
     });
   }
-}
+  }
 </script>
 
 <style>

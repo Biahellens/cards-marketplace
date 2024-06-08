@@ -5,7 +5,7 @@
 <template>
   <div class="w-[18.75rem] h-[100vh]">
     <div
-      class="w-[18.75rem] h-full border-r border-yellow800 flex flex-col justify-baseline items-baseline p-[3rem]"
+      class="w-[18.75rem] h-full border-r border-b border-yellow800 flex flex-col justify-baseline items-baseline p-[3rem]"
     >
       <div class="w-full flex flex-row text-darkGrey text-[1.2rem] mt-[0.5rem]">
         <router-link to="/myCards" class='flex flex-row items-center'>

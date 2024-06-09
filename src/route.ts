@@ -4,7 +4,8 @@ import Login from '@pages/Login/Login.vue';
 import Register from '@pages/Register/Register.vue';
 import SwapCards from '@pages/SwapCards/SwapCards.vue'
 import AllCards from '@pages/AllCards/AllCards.vue';
-import Shop from '@pages/Shop/Shop.vue'
+import Shop from '@pages/Shop/Shop.vue';
+import { getCurrentInstance, ComponentInternalInstance } from 'vue';
 
 const routes = [
   {
@@ -21,21 +22,36 @@ const routes = [
   },
   {
     path: '/allCards',
-    component: AllCards
+    component: AllCards,
+    meta: { requiresAuth: true }
   },
   {
     path: '/myCards',
-    component: MyCards
+    component: MyCards,
+    meta: { requiresAuth: true }
   },
   {
     path: '/shop',
-    component: Shop
+    component: Shop,
+    meta: { requiresAuth: true }
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem("token");
+  const instance = getCurrentInstance() as ComponentInternalInstance | null;
+
+  if (instance && to.meta.requiresAuth && !token) {
+    instance.proxy?.$emit('redirectToLogin');
+    next(false); 
+  } else {
+    next();
+  }
 });
 
 export default router;

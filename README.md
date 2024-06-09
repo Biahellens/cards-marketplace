@@ -1,6 +1,6 @@
 # Cards-Marketplace
 
-Projeto referente ao projeto onde o objetivo é contruir um sistema de marketplace para troca de cartas.
+Projeto referente ao projeto onde o objetivo é contruir um sistema de marketplace para troca de cartas. 
 
 - [Cards-Marketplace](#Cards-Marketplace)
   - [Tecnologias](#tecnologias)
@@ -23,6 +23,12 @@ Para o desenvolvimento deste projeto, foi utilizado as seguintes tecnologias:
 ### Iniciando o Front-end:
 
 O nosso front-end foi inciado utilizando vite com o uso de Vue 3 + Typescript e fazendo uso do Tailwind para componentização e criação do design do projeto.
+
+Primeiramente crie o arquivo .env na raiz do projeto e preencha com a url da API, desta forma:
+
+```bash
+VITE_APP_BASE_URL_API=sua_url_da_API
+```
 
 Para iniciar o nosso front-end o primeiro passo é instalar as dependências: 
 

@@ -1,7 +1,3 @@
-<script setup lang="ts">
-  import { AkHomeAlt1, FlPlayingCards, FlWindowMultipleSwap, BxShoppingBag  } from "@kalimahapps/vue-icons";
-</script>
-
 <template>
   <div class="w-[18.75rem] h-[100vh]">
     <div
@@ -30,6 +26,8 @@
     </div>
   </div>
 </template>
-
+<script setup lang="ts">
+  import { AkHomeAlt1, FlPlayingCards, FlWindowMultipleSwap, BxShoppingBag  } from "@kalimahapps/vue-icons";
+</script>
 <style>
 </style>

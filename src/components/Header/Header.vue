@@ -1,20 +1,3 @@
-<script setup lang="ts">
-import { AkHomeAlt1, FlPlayingCards, FlWindowMultipleSwap, ByMenu, CaCloseLarge, BxShoppingBag } from "@kalimahapps/vue-icons";
-import { ref, inject } from "vue";
-
-const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
-
-const isModalOpen = ref(false);
-
-const openModal = () => {
-  isModalOpen.value = true;
-};
-
-const closeModal = () => {
-  isModalOpen.value = false;
-};
-</script>
-
 <template>
   <div class="w-full flex flex-col">
     <div
@@ -59,6 +42,21 @@ const closeModal = () => {
     </div>
   </div>
 </template>
+<script setup lang="ts">
+import { AkHomeAlt1, FlPlayingCards, FlWindowMultipleSwap, ByMenu, CaCloseLarge, BxShoppingBag } from "@kalimahapps/vue-icons";
+import { ref, inject } from "vue";
 
+const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
+
+const isModalOpen = ref(false);
+
+const openModal = () => {
+  isModalOpen.value = true;
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+};
+</script>
 <style>
 </style>

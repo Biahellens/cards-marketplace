@@ -18,7 +18,7 @@
         </div>
         <div class="flex flex-row flex-wrap">
           <template v-for="row in cards" :key="row.id">
-            <div class="flex flex-col justify-center items-center mr-[3rem]" v-if="row.name.length > 0">
+            <div class="flex flex-col justify-center items-center mr-[3rem] mt-[4rem]" v-if="row.name.length > 0">
               <Card :name="row.name" :imageUrl="row.imageUrl" />
               <button class="mt-[2rem] bg-darkGrey h-[3rem] w-[8rem] rounded-sm text-[1rem] text-white font-medium" @click="selectCard(row.id)">
                 Selecionar
@@ -37,7 +37,7 @@
   import Menu from '@components/Menu/Menu.vue'
   import Card from '@components/Card/Card.vue'
   import { BuyCards, ModelCard } from "@models/Card";
-  import { CardService } from "@services/Card/userCard";
+  import { CardService } from "@services/Card/cardService";
   import { ClAddPlus } from "@kalimahapps/vue-icons";
   import { toast } from 'vue3-toastify';
   import 'vue3-toastify/dist/index.css';

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[20rem] h-[26.25rem] mt-[4rem] border-2 border-darkGrey rounded-lg">
+  <div class="w-[20rem] h-[26.25rem] border-2 border-darkGrey rounded-lg">
     <div
       class="h-[21.25rem]  flex flex-col justify-center items-center"
     >

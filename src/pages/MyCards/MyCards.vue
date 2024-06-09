@@ -11,7 +11,7 @@
         </div>
         <div class="flex flex-row flex-wrap">
           <template v-for="row in cards" :key="row.id">
-            <div class="flex flex-col justify-center items-center mr-[3rem]" v-if="row.name.length > 0">
+            <div class="flex flex-col justify-center items-center mr-[3rem] mt-[4rem]" v-if="row.name.length > 0">
               <Card :name="row.name" :imageUrl="row.imageUrl" />
             </div>
           </template>
@@ -27,7 +27,7 @@
   import Menu from '@components/Menu/Menu.vue'
   import Card from '@components/Card/Card.vue'
   import { ModelCard } from "@models/Card";
-  import { CardService } from "@services/Card/userCard";
+  import { CardService } from "@services/Card/cardService";
 
   const isTabletOrMobile = inject("isTabletOrMobile", ref(false));
   const cards = ref<ModelCard[]>([]);

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import MyCards from '@pages/MyCards/MyCards.vue';
 import Login from '@pages/Login/Login.vue';
 import Register from '@pages/Register/Register.vue';
-import SwapCards from '@pages/SwapCards/SwapCards.vue'
+import SwapCards from '@pages/SwapCards/SwapCards.vue';
 import AllCards from '@pages/AllCards/AllCards.vue';
 import Shop from '@pages/Shop/Shop.vue';
 import { getCurrentInstance, ComponentInternalInstance } from 'vue';
@@ -44,11 +44,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem("token");
-  const instance = getCurrentInstance() as ComponentInternalInstance | null;
 
-  if (instance && to.meta.requiresAuth && !token) {
-    instance.proxy?.$emit('redirectToLogin');
-    next(false); 
+  if (to.matched.some(record => record.meta.requiresAuth) && !token) {
+    next({ path: '/login' });
   } else {
     next();
   }

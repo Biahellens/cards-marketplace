@@ -24,7 +24,7 @@
                     v-if="tradeCard.type === 'OFFERING'"
                     class="ml-[0.5rem] mr-[0.5rem]"
                   >
-                    <div v-if="tradeCard.card.name.length > 0">
+                    <div v-if="tradeCard.card && tradeCard.card.name.length > 0">
                       <Card
                         :name="tradeCard.card.name"
                         :imageUrl="tradeCard.card.imageUrl"
@@ -35,7 +35,7 @@
                     v-else-if="tradeCard.type === 'RECEIVING'"
                     class="mr-[0.5rem] ml-[0.5rem]"
                   >
-                    <div v-if="tradeCard.card.name.length > 0">
+                    <div v-if="tradeCard.card && tradeCard.card.name.length > 0">
                       <Card
                         :name="tradeCard.card.name"
                         :imageUrl="tradeCard.card.imageUrl"
@@ -74,7 +74,7 @@
             </div>
             <div>
               <p class="text-[1.5rem] text-darkGrey font-medium">
-                Você realmente deseja desfazer a troca ?
+                Você realmente deseja desfazer a troca?
               </p>
               <div class="mt-[2rem] flex flex-row flex-wrap">
                 <button
@@ -115,27 +115,28 @@ const isModalOpen = ref(false);
 const selectedCard = ref<string>("");
 
 const { user } = useUserContext();
-const userId = user ? user.value.id : "erro";
+const userId = ref<string | null>(null);
 
 const cards = ref<Swap[]>([]);
 
 const getCards = async () => {
   const result = await SwapService.Get();
   if (result) {
-    cards.value = result.list;
+    cards.value = result.list || [];
   }
 };
 
 const deleteSwap = async (tradeId: string) => {
   try {
     await SwapService.Delete(tradeId);
-    toast.success("Troca esfeita com sucesso!", {
+    toast.success("Troca desfeita com sucesso!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
     });
+    getCards();
   } catch (error) {
     toast.error("Ocorreu um erro ao desfazer troca.", {
       position: "top-right",
@@ -157,6 +158,11 @@ const closeModal = () => {
 };
 
 watchEffect(() => {
+  if (user && user.value && user.value.id) {
+    userId.value = user.value.id;
+  } else {
+    userId.value = null;
+  }
   getCards();
 });
 </script>

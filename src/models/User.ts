@@ -1,6 +1,6 @@
 export type User = {
-  userId: null,
+  [x: string]: any;
+  id: string | null,
   name: string,
   email: string,
-  password: number
 }

@@ -84,10 +84,10 @@
                   Cancelar
                 </button>
                 <button
-                  @click="deleteSwap"
+                  @click="deleteSwap(selectedCard)"
                   class="flex flex-row justify-center items-center bg-darkGrey h-[3rem] w-[8rem] rounded-sm text-[1rem] text-white font-medium"
                 >
-                  Trocar
+                  Desfazer
                 </button>
               </div>
             </div>

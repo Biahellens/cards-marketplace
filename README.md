@@ -1,6 +1,6 @@
 # Cards-Marketplace
 
-Projeto referente ao projeto onde o objetivo é contruir um sistema de marketplace para troca de cartas. 
+Projeto onde o objetivo é contruir um sistema de marketplace para troca de cartas. 
 
 - [Cards-Marketplace](#Cards-Marketplace)
   - [Tecnologias](#tecnologias)

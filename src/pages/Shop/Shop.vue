@@ -20,9 +20,14 @@
           <template v-for="row in cards" :key="row.id">
             <div class="flex flex-col justify-center items-center mr-[3rem] mt-[4rem]" v-if="row.name.length > 0">
               <Card :name="row.name" :imageUrl="row.imageUrl" />
-              <button class="mt-[2rem] bg-darkGrey h-[3rem] w-[8rem] rounded-sm text-[1rem] text-white font-medium" @click="selectCard(row.id)">
-                Selecionar
-              </button>
+              <div>
+                <button
+                  class="mt-[2rem] bg-darkGrey h-[3rem] w-[8rem] rounded-sm text-[1rem] text-white font-medium"
+                  @click="toggleCardSelection(row.id)"
+                >
+                  {{ selectedCards.includes(row.id) ? 'Remover' : 'Selecionar' }}
+                </button>
+              </div>
             </div>
           </template>
         </div>
@@ -60,8 +65,10 @@
     }
   }
 
-  const selectCard = (cardId: string) => {
-    if (!selectedCards.value.includes(cardId)) {
+  const toggleCardSelection = (cardId: string) => {
+    if (selectedCards.value.includes(cardId)) {
+      selectedCards.value = selectedCards.value.filter(id => id !== cardId);
+    } else {
       selectedCards.value.push(cardId);
     }
   }
@@ -71,45 +78,46 @@
   });
 
   const handleBuyCards = async () => {
-  if(selectedCards.value.length === 0) {
-    toast.warn("Você precisa escolher uma carta", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-    });
-    return;
-  }
+    if (selectedCards.value.length === 0) {
+      toast.warn("Você precisa escolher uma carta", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      return;
+    }
 
-  const cardsBody: BuyCards = {
-    cardIds: selectedCards.value
-  };
+    const cardsBody: BuyCards = {
+      cardIds: selectedCards.value
+    };
 
-  try {
-    await CardService.Post(cardsBody)
+    try {
+      await CardService.Post(cardsBody)
 
-    toast.success("Carta(s) adicionada(s) com sucesso!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-    });
+      toast.success("Carta(s) adicionada(s) com sucesso!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
 
-    selectedCards.value = [];
+      selectedCards.value = [];
 
-  } catch(error){
-    toast.error("Ocorreu um erro ao adicionar carta(s).", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-    });
-  }
+    } catch (error) {
+      toast.error("Ocorreu um erro ao adicionar carta(s).", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+    }
   }
 </script>
+
 
 <style>
 </style>

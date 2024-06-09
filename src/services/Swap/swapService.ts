@@ -25,4 +25,26 @@ export const SwapService = {
       throw new Error("Não foi possível obter as trocas ativas");
     }
   },
+  Delete: async (tradeId: string) => {
+    try {
+      const API_URL = `${baseUrlApi.baseUrlApi}/trades/${tradeId}`;
+      const token = localStorage.getItem("token");
+      const httpHeaders = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      const response: AxiosResponse = await axios.delete(
+        API_URL,
+        {
+          headers: httpHeaders,
+        }
+      );
+
+      if (response) {
+        return response.data;
+      }
+    } catch (error) {
+      throw new Error("Não foi possível desfazer a troca");
+    }
+  },
 };
